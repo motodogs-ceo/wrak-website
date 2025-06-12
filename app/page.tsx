@@ -1,10 +1,31 @@
 'use client';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import '../global.css';
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [siteLocked, setSiteLocked] = useState(true);
+
+  const unlockSite = () => {
+    const pass = prompt("Password?");
+    if (pass === "jackdwak") {
+      setSiteLocked(false);
+    } else {
+      alert("Nah.");
+    }
+  };
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+
+      if (e.ctrlKey && e.shiftKey && e.key === "W") {
+        setSiteLocked(false);
+      }
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, []);
 
   const messages = [
     "WRAK walks alone",
@@ -17,6 +38,41 @@ export default function Home() {
     "Live on Raydium",
     "If you’re here now, you’re early.",
   ];
+
+  if (siteLocked) {
+    return (
+      <div className="fixed inset-0 bg-black text-yellow-400 z-50 flex items-center justify-center text-center px-6">
+        <div className="max-w-md">
+          <h1 className="text-3xl font-bold mb-6 uppercase font-[Rye]">
+            Site Locked
+          </h1>
+          <p className="text-lg leading-relaxed font-semibold mb-8">
+            WRAK is the roughest, toughest, no-mercy meme coin on the planet.
+            <br />
+            The infestation has begun — but this site isn’t ready for it yet.
+            <br /><br />
+            You can start the countdown — but you can’t enter.
+          </p>
+          <div className="flex gap-4 justify-center">
+            <button
+              onClick={unlockSite}
+              className="bg-yellow-400 text-black px-5 py-2 rounded-full font-bold hover:bg-yellow-300"
+            >
+              DEV
+            </button>
+            <a
+              href="https://raydium.io/swap?inputCurrency=sol&outputCurrency=9pD4JkGvEtcHwLsyoZ2uG8Dpq2zoZnZQRCvA5bCNzVeJ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-transparent border border-yellow-400 text-yellow-400 px-5 py-2 rounded-full font-bold hover:bg-yellow-400 hover:text-black"
+            >
+              SOON
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-screen flex flex-col bg-black text-white overflow-hidden">
@@ -47,7 +103,7 @@ export default function Home() {
           <h1 className="text-2xl md:text-4xl font-bold text-[#ffe175] font-[Rye]">
             Get $WRAK — or get WRAKed.
           </h1>
-          <p className="text-xs md:text-sm text-white-400 mt-1">
+          <p className="text-xs md:text-sm text-[#ffe175] mt-1">
             <a
               href="https://solscan.io/token/9pD4JkGvEtcHwLsyoZ2uG8Dpq2zoZnZQRCvA5bCNzVeJ"
               target="_blank"
@@ -125,7 +181,6 @@ export default function Home() {
           alt="WRAK background"
           className="absolute inset-0 w-full h-full object-cover opacity-60 -z-10"
         />
-        {/* Optional: rat overlay or future call-to-action */}
       </div>
     </div>
   );
