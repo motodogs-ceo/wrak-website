@@ -1,103 +1,132 @@
+'use client';
+import { useState } from "react";
 import Image from "next/image";
+import '../global.css';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [menuOpen, setMenuOpen] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+  const messages = [
+    "WRAK walks alone",
+    "No roadmap. No whitelist. No mercy",
+    "200M WRAK in circulation",
+    "1B WRAK burned",
+    "25 SOL paired",
+    "LP locked",
+    "Mint authority renounced",
+    "Live on Raydium",
+    "If you’re here now, you’re early.",
+  ];
+
+  return (
+    <div className="w-full h-screen flex flex-col bg-black text-white overflow-hidden">
+      {/* ===== HEADER (top 20%) ===== */}
+      <div className="relative z-30 w-full flex items-center justify-center bg-black border-b border-yellow-500 py-4 px-4">
+        {/* Social Buttons (Top Left) */}
+        <div className="absolute left-4 top-4 flex gap-2">
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://x.com/WRAKcoin"
             target="_blank"
             rel="noopener noreferrer"
+            className="bg-white text-black px-3 py-1 text-sm rounded-full font-bold hover:bg-gray-300"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            X
           </a>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://t.me/+s5LuRPCJPWsyMzdh"
             target="_blank"
             rel="noopener noreferrer"
+            className="bg-transparent border border-white px-3 py-1 text-sm rounded-full font-bold hover:bg-white hover:text-black"
           >
-            Read our docs
+            Telegram
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+
+        {/* Tagline + Contract */}
+        <div className="flex flex-col items-center justify-center text-center flex-grow">
+          <h1 className="text-2xl md:text-4xl font-bold text-[#ffe175] font-[Rye]">
+            Get $WRAK — or get WRAKed.
+          </h1>
+          <p className="text-xs md:text-sm text-white-400 mt-1">
+            <a
+              href="https://solscan.io/token/9pD4JkGvEtcHwLsyoZ2uG8Dpq2zoZnZQRCvA5bCNzVeJ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline break-all"
+            >
+              9pD4JkGvEtcHwLsyoZ2uG8Dpq2zoZnZQRCvA5bCNzVeJ
+            </a>
+          </p>
+        </div>
+
+        {/* Menu Icon (Top Right) */}
+        <div
+          className="absolute right-4 top-4 cursor-pointer"
+          onClick={() => setMenuOpen(!menuOpen)}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <div className="space-y-1">
+            <span className="block h-1 w-6 bg-white"></span>
+            <span className="block h-1 w-6 bg-white"></span>
+            <span className="block h-1 w-6 bg-white"></span>
+          </div>
+        </div>
+      </div>
+
+      {/* ===== SLIDE-OUT MENU ===== */}
+      {menuOpen && (
+        <div className="absolute top-0 right-0 w-64 h-full bg-black bg-opacity-90 text-white p-6 z-50 space-y-4">
+          <button onClick={() => setMenuOpen(false)} className="text-right w-full text-xl">
+            ✕
+          </button>
+          <a href="/" className="block">Home</a>
+          <a href="/tokenomics" className="block">Tokenomics</a>
+          <a href="/community" className="block">Community</a>
+          <a
+            href="https://raydium.io/swap?inputCurrency=sol&outputCurrency=9pD4JkGvEtcHwLsyoZ2uG8Dpq2zoZnZQRCvA5bCNzVeJ"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block"
+          >
+            Raydium
+          </a>
+        </div>
+      )}
+
+      {/* ===== TICKER (fixed height) ===== */}
+      <div className="w-full border-b border-yellow-500 py-2 bg-black">
+        <div className="overflow-hidden whitespace-nowrap">
+          <div className="inline-flex items-center gap-10 animate-ticker-x-center px-4 text-2xl font-[Rye]">
+            {messages.map((msg, index) => (
+              <span key={index} className="text-[#ffe175] flex items-center gap-6">
+                <span>{msg}</span>
+                {index !== messages.length - 1 && (
+                  <>
+                    <Image
+                      src="/diamond.png"
+                      alt="◆"
+                      width={35}
+                      height={35}
+                      className="inline-block"
+                      priority
+                    />
+                    <span className="inline-block" />
+                  </>
+                )}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ===== HERO (fills remaining space) ===== */}
+      <div className="relative flex-1 z-10 flex items-center justify-center">
+        <img
+          src="/wrak-placeholder.jpg"
+          alt="WRAK background"
+          className="absolute inset-0 w-full h-full object-cover opacity-60 -z-10"
+        />
+        {/* Optional: rat overlay or future call-to-action */}
+      </div>
     </div>
   );
 }

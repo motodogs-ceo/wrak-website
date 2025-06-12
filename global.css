@@ -1,0 +1,54 @@
+/* ===============================
+   TICKER: START & END IN CENTER
+   =============================== */
+
+/* 
+   Keyframes:
+   - 0%  -> first message in center (translateX(50vw))
+   - 100% -> last message in center (translateX(calc(50vw - 100%)))
+*/
+@keyframes ticker-x-center {
+  0% {
+    transform: translateX(50vw);
+  }
+  100% {
+    transform: translateX(calc(50vw - 96%));
+  }
+}
+
+/* Apply this to your ticker container */
+.animate-ticker-x-center {
+  animation: ticker-x-center 25s linear infinite;
+}
+
+/* ==========================================
+   (If you need your old ticker animations,
+    you can keep them too, but pick only
+    one class at a time in the TSX/JSX.)
+========================================== */
+
+/* Original left-scrolling ticker */
+@keyframes scroll-x {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.animate-scroll-x {
+  animation: scroll-x 40s linear infinite;
+}
+
+/* Original right-scrolling ticker */
+@keyframes scroll-x-reverse {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.animate-scroll-x-reverse {
+  animation: scroll-x-reverse 30s linear infinite;
+}

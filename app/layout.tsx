@@ -25,9 +25,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white flex flex-col min-h-screen`}
       >
-        {children}
+        {/* Page content */}
+        <div className="flex-grow">{children}</div>
+
+        {/* Global footer */}
+        <footer className="w-full text-center text-sm text-gray-400 py-2 border-t border-yellow-500 bg-black">
+          <p>© {new Date().getFullYear()} WRAKcoin. All rights reserved.</p>
+        </footer>
       </body>
     </html>
   );
