@@ -133,9 +133,6 @@ export default function Home() {
           <a href="/tokenomics" className="block">
             Tokenomics
           </a>
-          <a href="/community" className="block">
-            Community
-          </a>
           <a
             href="https://raydium.io/swap?inputCurrency=sol&outputCurrency=9pD4JkGvEtcHwLsyoZ2uG8Dpq2zoZnZQRCvA5bCNzVeJ"
             target="_blank"
