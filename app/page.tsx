@@ -4,7 +4,6 @@ import Image from 'next/image';
 import '../global.css';
 
 export default function Home() {
-  /* ────────────────── state / helpers ────────────────── */
   const [menuOpen, setMenuOpen] = useState(false);
   const [siteLocked, setSiteLocked] = useState(true);
 
@@ -14,23 +13,14 @@ export default function Home() {
     else alert('Nah.');
   };
 
-  /* CTRL+SHIFT+W dev shortcut */
   useEffect(() => {
-    const h = (e: KeyboardEvent) => {
+    const handleKey = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.shiftKey && e.key === 'W') setSiteLocked(false);
     };
-    window.addEventListener('keydown', h);
-    return () => window.removeEventListener('keydown', h);
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
   }, []);
 
-  /* 🚫 lock scroll ONLY while the homepage is mounted */
-  useEffect(() => {
-    const html = document.documentElement;
-    html.classList.add('wrak-home-lock');
-    return () => html.classList.remove('wrak-home-lock');
-  }, []);
-
-  /* ────────────────── marquee text ────────────────── */
   const messages = [
     '$WRAK walks alone',
     'No roadmap. No whitelist. No mercy',
@@ -40,16 +30,16 @@ export default function Home() {
     'LP locked',
     'Mint authority renounced',
     'Live on Raydium',
-    'If you’re here now, you’re early…',
+    "If you’re here now, you’re early...",
   ];
 
-  /* ────────────────── LOCKED VIEW ────────────────── */
+  /* ───────────────── LOCKED OVERLAY ───────────────── */
   if (siteLocked) {
     return (
-      <div className="fixed inset-0 bg-black text-yellow-400 z-50 flex items-center justify-center text-center px-6">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black px-6 text-center text-yellow-400">
         <div className="max-w-md">
-          <h1 className="text-3xl font-bold mb-6 uppercase font-[Rye]">Site Locked</h1>
-          <p className="text-lg leading-relaxed font-semibold mb-8">
+          <h1 className="mb-6 text-3xl font-bold uppercase font-[Rye]">Site Locked</h1>
+          <p className="mb-8 text-lg font-semibold leading-relaxed">
             WRAK is the roughest, toughest, no-mercy meme coin on the planet.
             <br />
             The infestation has begun — but this site isn’t ready for it yet.
@@ -57,10 +47,10 @@ export default function Home() {
             <br />
             You can start the countdown — but you can’t enter.
           </p>
-          <div className="flex gap-4 justify-center">
+          <div className="flex justify-center gap-4">
             <button
               onClick={unlockSite}
-              className="bg-yellow-400 text-black px-5 py-2 rounded-full font-bold hover:bg-yellow-300"
+              className="rounded-full bg-yellow-400 px-5 py-2 font-bold text-black hover:bg-yellow-300"
             >
               DEV
             </button>
@@ -68,7 +58,7 @@ export default function Home() {
               href="https://raydium.io/swap?inputCurrency=sol&outputCurrency=9pD4JkGvEtcHwLsyoZ2uG8Dpq2zoZnZQRCvA5bCNzVeJ"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-transparent border border-yellow-400 text-yellow-400 px-5 py-2 rounded-full font-bold hover:bg-yellow-400 hover:text-black"
+              className="rounded-full border border-yellow-400 px-5 py-2 font-bold text-yellow-400 hover:bg-yellow-400 hover:text-black"
             >
               SOON
             </a>
@@ -78,18 +68,18 @@ export default function Home() {
     );
   }
 
-  /* ────────────────── MAIN PAGE ────────────────── */
+  /* ───────────────── MAIN PAGE ───────────────── */
   return (
-    <div className="w-full h-screen flex flex-col bg-black text-white overflow-hidden">
+    <div className="fixed inset-0 flex flex-col bg-black text-white overflow-hidden">
       {/* ===== HEADER ===== */}
-      <div className="relative z-30 w-full flex items-center justify-center bg-black border-b border-yellow-500 py-4 px-4">
-        {/* social buttons (TL) */}
-        <div className="absolute left-4 top-4 flex gap-2">
+      <div className="relative z-30 w-full flex-shrink-0 flex items-center justify-center border-b border-yellow-500 bg-black py-4 px-4">
+        {/* Social Buttons (hide on mobile) */}
+        <div className="absolute left-4 top-4 hidden sm:flex gap-2">
           <a
             href="https://x.com/WRAKcoin"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-black px-3 py-1 text-sm rounded-full font-bold hover:bg-gray-300"
+            className="rounded-full bg-white px-3 py-1 text-sm font-bold text-black hover:bg-gray-300"
           >
             X
           </a>
@@ -97,34 +87,31 @@ export default function Home() {
             href="https://t.me/+s5LuRPCJPWsyMzdh"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-transparent border border-white px-3 py-1 text-sm rounded-full font-bold hover:bg-white hover:text-black"
+            className="rounded-full border border-white px-3 py-1 text-sm font-bold hover:bg-white hover:text-black"
           >
             Telegram
           </a>
         </div>
 
-        {/* tagline + contract */}
+        {/* Tagline + Contract */}
         <div className="flex flex-col items-center justify-center text-center flex-grow">
-          <h1 className="text-2xl md:text-4xl font-bold text-[#ffe175] font-[Rye]">
-            Get $WRAK — or get WRAKed
+          <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-[#ffe175] font-[Rye]">
+            Get $WRAK — or get WRAKed.
           </h1>
-          <p className="text-xs md:text-sm text-[#ffe175] mt-1">
+          <p className="mt-1 text-xs md:text-sm text-[#ffe175]">
             <a
               href="https://solscan.io/token/9pD4JkGvEtcHwLsyoZ2uG8Dpq2zoZnZQRCvA5bCNzVeJ"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:underline break-all"
+              className="break-all hover:underline"
             >
               9pD4JkGvEtcHwLsyoZ2uG8Dpq2zoZnZQRCvA5bCNzVeJ
             </a>
           </p>
         </div>
 
-        {/* burger (TR) */}
-        <div
-          className="absolute right-4 top-4 cursor-pointer"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
+        {/* Menu Icon */}
+        <div className="absolute right-4 top-4 cursor-pointer" onClick={() => setMenuOpen(!menuOpen)}>
           <div className="space-y-1">
             <span className="block h-1 w-6 bg-white" />
             <span className="block h-1 w-6 bg-white" />
@@ -135,15 +122,19 @@ export default function Home() {
 
       {/* ===== SLIDE-OUT MENU ===== */}
       {menuOpen && (
-        <div className="absolute top-0 right-0 w-64 h-full bg-black bg-opacity-90 text-white p-6 z-50 space-y-4">
-          <button onClick={() => setMenuOpen(false)} className="text-right w-full text-xl">
+        <div className="absolute top-0 right-0 z-50 h-full w-64 space-y-4 bg-black bg-opacity-90 p-6 text-white">
+          <button onClick={() => setMenuOpen(false)} className="w-full text-right text-xl">
             ✕
           </button>
+
           <a href="/" className="block">
             Home
           </a>
           <a href="/tokenomics" className="block">
             Tokenomics
+          </a>
+          <a href="/community" className="block">
+            Community
           </a>
           <a
             href="https://raydium.io/swap?inputCurrency=sol&outputCurrency=9pD4JkGvEtcHwLsyoZ2uG8Dpq2zoZnZQRCvA5bCNzVeJ"
@@ -153,16 +144,36 @@ export default function Home() {
           >
             Raydium
           </a>
+
+          {/* Mobile-only socials */}
+          <div className="flex gap-4 pt-2 border-t border-yellow-500 sm:hidden">
+            <a
+              href="https://x.com/WRAKcoin"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-white px-3 py-1 text-sm font-bold text-black hover:bg-gray-300"
+            >
+              X
+            </a>
+            <a
+              href="https://t.me/+s5LuRPCJPWsyMzdh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white px-3 py-1 text-sm font-bold hover:bg-white hover:text-black"
+            >
+              Telegram
+            </a>
+          </div>
         </div>
       )}
 
-      {/* ===== MARQUEE ===== */}
-      <div className="w-full border-b border-yellow-500 py-2 bg-black">
+      {/* ===== TICKER ===== */}
+      <div className="w-full flex-shrink-0 border-b border-yellow-500 bg-black py-2">
         <div className="overflow-hidden whitespace-nowrap">
-          <div className="inline-flex items-center gap-10 animate-ticker-x-center px-4 text-2xl font-[Rye]">
-            {messages.map((m, i) => (
-              <span key={i} className="text-[#ffe175] flex items-center gap-6">
-                <span>{m}</span>
+          <div className="inline-flex animate-ticker-x-center items-center gap-10 px-4 text-2xl font-[Rye]">
+            {messages.map((msg, i) => (
+              <span key={i} className="flex items-center gap-6 text-[#ffe175]">
+                <span>{msg}</span>
                 {i !== messages.length - 1 && (
                   <>
                     <Image
@@ -183,13 +194,19 @@ export default function Home() {
       </div>
 
       {/* ===== HERO ===== */}
-      <div className="relative flex-1 z-10 flex items-center justify-center">
-        <img
+      <div className="relative z-10 flex flex-grow items-center justify-center">
+        <Image
           src="/wrak-placeholder.jpg"
           alt="WRAK background"
-          className="absolute inset-0 w-full h-full object-cover opacity-60 -z-10"
+          fill
+          className="object-cover opacity-60 -z-10"
         />
       </div>
+
+      {/* ===== FOOTER ===== */}
+      <footer className="w-full flex-shrink-0 border-t border-yellow-500 py-2 text-center text-sm text-[#ffe175]">
+        © 2025 WRAKcoin. All rights reserved.
+      </footer>
     </div>
   );
 }
