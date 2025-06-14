@@ -24,3 +24,18 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Only takes effect while <html> has the flag class */
+html.wrak-home-lock {
+  overflow: hidden;           /* stop scrolling */
+}
+
+/* Keep the global footer visible, but *only* on the home page */
+html.wrak-home-lock footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 40;
+}
+

@@ -1,56 +1,60 @@
 'use client';
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import '../global.css';
 
 export default function Home() {
+  /* ────────────────── state / helpers ────────────────── */
   const [menuOpen, setMenuOpen] = useState(false);
   const [siteLocked, setSiteLocked] = useState(true);
 
   const unlockSite = () => {
-    const pass = prompt("Password?");
-    if (pass === "jackdwak") {
-      setSiteLocked(false);
-    } else {
-      alert("Nah.");
-    }
+    const pass = prompt('Password?');
+    if (pass === 'jackdwak') setSiteLocked(false);
+    else alert('Nah.');
   };
 
+  /* CTRL+SHIFT+W dev shortcut */
   useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-
-      if (e.ctrlKey && e.shiftKey && e.key === "W") {
-        setSiteLocked(false);
-      }
+    const h = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key === 'W') setSiteLocked(false);
     };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
+    window.addEventListener('keydown', h);
+    return () => window.removeEventListener('keydown', h);
   }, []);
 
+  /* 🚫 lock scroll ONLY while the homepage is mounted */
+  useEffect(() => {
+    const html = document.documentElement;
+    html.classList.add('wrak-home-lock');
+    return () => html.classList.remove('wrak-home-lock');
+  }, []);
+
+  /* ────────────────── marquee text ────────────────── */
   const messages = [
-    "WRAK walks alone",
-    "No roadmap. No whitelist. No mercy",
-    "200M WRAK in circulation",
-    "1B WRAK burned",
-    "25 SOL paired",
-    "LP locked",
-    "Mint authority renounced",
-    "Live on Raydium",
-    "If you’re here now, you’re early.",
+    '$WRAK walks alone',
+    'No roadmap. No whitelist. No mercy',
+    '200M in circulation',
+    '1B burned',
+    '25 SOL paired',
+    'LP locked',
+    'Mint authority renounced',
+    'Live on Raydium',
+    'If you’re here now, you’re early…',
   ];
 
+  /* ────────────────── LOCKED VIEW ────────────────── */
   if (siteLocked) {
     return (
       <div className="fixed inset-0 bg-black text-yellow-400 z-50 flex items-center justify-center text-center px-6">
         <div className="max-w-md">
-          <h1 className="text-3xl font-bold mb-6 uppercase font-[Rye]">
-            Site Locked
-          </h1>
+          <h1 className="text-3xl font-bold mb-6 uppercase font-[Rye]">Site Locked</h1>
           <p className="text-lg leading-relaxed font-semibold mb-8">
             WRAK is the roughest, toughest, no-mercy meme coin on the planet.
             <br />
             The infestation has begun — but this site isn’t ready for it yet.
-            <br /><br />
+            <br />
+            <br />
             You can start the countdown — but you can’t enter.
           </p>
           <div className="flex gap-4 justify-center">
@@ -74,11 +78,12 @@ export default function Home() {
     );
   }
 
+  /* ────────────────── MAIN PAGE ────────────────── */
   return (
     <div className="w-full h-screen flex flex-col bg-black text-white overflow-hidden">
-      {/* ===== HEADER (top 20%) ===== */}
+      {/* ===== HEADER ===== */}
       <div className="relative z-30 w-full flex items-center justify-center bg-black border-b border-yellow-500 py-4 px-4">
-        {/* Social Buttons (Top Left) */}
+        {/* social buttons (TL) */}
         <div className="absolute left-4 top-4 flex gap-2">
           <a
             href="https://x.com/WRAKcoin"
@@ -98,10 +103,10 @@ export default function Home() {
           </a>
         </div>
 
-        {/* Tagline + Contract */}
+        {/* tagline + contract */}
         <div className="flex flex-col items-center justify-center text-center flex-grow">
           <h1 className="text-2xl md:text-4xl font-bold text-[#ffe175] font-[Rye]">
-            Get $WRAK — or get WRAKed.
+            Get $WRAK — or get WRAKed
           </h1>
           <p className="text-xs md:text-sm text-[#ffe175] mt-1">
             <a
@@ -115,15 +120,15 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Menu Icon (Top Right) */}
+        {/* burger (TR) */}
         <div
           className="absolute right-4 top-4 cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           <div className="space-y-1">
-            <span className="block h-1 w-6 bg-white"></span>
-            <span className="block h-1 w-6 bg-white"></span>
-            <span className="block h-1 w-6 bg-white"></span>
+            <span className="block h-1 w-6 bg-white" />
+            <span className="block h-1 w-6 bg-white" />
+            <span className="block h-1 w-6 bg-white" />
           </div>
         </div>
       </div>
@@ -134,9 +139,15 @@ export default function Home() {
           <button onClick={() => setMenuOpen(false)} className="text-right w-full text-xl">
             ✕
           </button>
-          <a href="/" className="block">Home</a>
-          <a href="/tokenomics" className="block">Tokenomics</a>
-          <a href="/community" className="block">Community</a>
+          <a href="/" className="block">
+            Home
+          </a>
+          <a href="/tokenomics" className="block">
+            Tokenomics
+          </a>
+          <a href="/community" className="block">
+            Community
+          </a>
           <a
             href="https://raydium.io/swap?inputCurrency=sol&outputCurrency=9pD4JkGvEtcHwLsyoZ2uG8Dpq2zoZnZQRCvA5bCNzVeJ"
             target="_blank"
@@ -148,14 +159,14 @@ export default function Home() {
         </div>
       )}
 
-      {/* ===== TICKER (fixed height) ===== */}
+      {/* ===== MARQUEE ===== */}
       <div className="w-full border-b border-yellow-500 py-2 bg-black">
         <div className="overflow-hidden whitespace-nowrap">
           <div className="inline-flex items-center gap-10 animate-ticker-x-center px-4 text-2xl font-[Rye]">
-            {messages.map((msg, index) => (
-              <span key={index} className="text-[#ffe175] flex items-center gap-6">
-                <span>{msg}</span>
-                {index !== messages.length - 1 && (
+            {messages.map((m, i) => (
+              <span key={i} className="text-[#ffe175] flex items-center gap-6">
+                <span>{m}</span>
+                {i !== messages.length - 1 && (
                   <>
                     <Image
                       src="/diamond.png"
@@ -174,7 +185,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ===== HERO (fills remaining space) ===== */}
+      {/* ===== HERO ===== */}
       <div className="relative flex-1 z-10 flex items-center justify-center">
         <img
           src="/wrak-placeholder.jpg"
