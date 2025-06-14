@@ -96,7 +96,7 @@ export default function Home() {
         {/* Tagline + Contract */}
         <div className="flex flex-col items-center justify-center text-center flex-grow">
           <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-[#ffe175] font-[Rye]">
-            Get $WRAK — or get WRAKed.
+            Get $WRAK — or get WRAKed
           </h1>
           <p className="mt-1 text-xs md:text-sm text-[#ffe175]">
             <a
