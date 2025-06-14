@@ -18,20 +18,25 @@ export default function TokenomicsPage() {
         </div>
       </div>
 
-      {/* ===== Slide-out Menu ===== */}
+      {/* ===== SLIDE-OUT MENU ===== */}
       {menuOpen && (
         <div className="absolute top-0 right-0 w-64 h-full bg-black bg-opacity-90 text-white p-6 z-50 space-y-4">
-          <button
-            onClick={() => setMenuOpen(false)}
-            className="text-right w-full text-xl"
-          >
+          <button onClick={() => setMenuOpen(false)} className="text-right w-full text-xl">
             ✕
           </button>
           <a href="/" className="block">
             Home
           </a>
-          <a href="/community" className="block">
-            Community
+          <a href="/tokenomics" className="block">
+            Tokenomics
+          </a>
+          <a
+            href="https://raydium.io/swap?inputCurrency=sol&outputCurrency=9pD4JkGvEtcHwLsyoZ2uG8Dpq2zoZnZQRCvA5bCNzVeJ"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block"
+          >
+            Raydium
           </a>
         </div>
       )}
