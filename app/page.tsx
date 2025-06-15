@@ -29,7 +29,7 @@ export default function Home() {
     '25 SOL paired',
     'LP locked',
     'Mint authority renounced',
-    'Live on Raydium',
+    'Get $WRAK on Raydium',
     "If you’re here now, you’re early...",
   ];
 
