@@ -33,7 +33,6 @@ export default function Home() {
     "If you’re here now, you’re early...",
   ];
 
-  /* ───────────────── LOCKED OVERLAY ───────────────── */
   if (siteLocked) {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black px-6 text-center text-yellow-400">
@@ -68,12 +67,10 @@ export default function Home() {
     );
   }
 
-  /* ───────────────── MAIN PAGE ───────────────── */
   return (
     <div className="fixed inset-0 flex flex-col bg-black text-white overflow-hidden">
       {/* ===== HEADER ===== */}
       <div className="relative z-30 w-full flex-shrink-0 flex items-center justify-center border-b border-yellow-500 bg-black py-4 px-4">
-        {/* Social Buttons (hide on mobile) */}
         <div className="absolute left-4 top-4 hidden sm:flex gap-2">
           <a
             href="https://x.com/WRAKcoin"
@@ -84,7 +81,7 @@ export default function Home() {
             X
           </a>
           <a
-            href="https://t.me/+s5LuRPCJPWsyMzdh"
+            href="https://t.me/+pjDeTtq3AWdjZDEx"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full border border-white px-3 py-1 text-sm font-bold hover:bg-white hover:text-black"
@@ -93,7 +90,6 @@ export default function Home() {
           </a>
         </div>
 
-        {/* Tagline + Contract */}
         <div className="flex flex-col items-center justify-center text-center flex-grow">
           <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-[#ffe175] font-[Rye]">
             Get $WRAK — or get WRAKed
@@ -110,7 +106,6 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Menu Icon */}
         <div className="absolute right-4 top-4 cursor-pointer" onClick={() => setMenuOpen(!menuOpen)}>
           <div className="space-y-1">
             <span className="block h-1 w-6 bg-white" />
@@ -127,12 +122,8 @@ export default function Home() {
             ✕
           </button>
 
-          <a href="/" className="block">
-            Home
-          </a>
-          <a href="/tokenomics" className="block">
-            Tokenomics
-          </a>
+          <a href="/" className="block">Home</a>
+          <a href="/tokenomics" className="block">Tokenomics</a>
           <a
             href="https://raydium.io/swap?inputCurrency=sol&outputCurrency=9pD4JkGvEtcHwLsyoZ2uG8Dpq2zoZnZQRCvA5bCNzVeJ"
             target="_blank"
@@ -142,7 +133,6 @@ export default function Home() {
             Raydium
           </a>
 
-          {/* Mobile-only socials */}
           <div className="flex gap-4 pt-2 border-t border-yellow-500 sm:hidden">
             <a
               href="https://x.com/WRAKcoin"
@@ -153,7 +143,7 @@ export default function Home() {
               X
             </a>
             <a
-              href="https://t.me/+s5LuRPCJPWsyMzdh"
+              href="https://t.me/+pjDeTtq3AWdjZDEx"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-white px-3 py-1 text-sm font-bold hover:bg-white hover:text-black"
